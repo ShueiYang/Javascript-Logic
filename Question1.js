@@ -24,6 +24,16 @@ const cleantheRoom = (array) => {
   console.log("after cleaning", finalArray); //after cleaning [[1, 1, 1, 1], [2, 2, 2], 4, 5, 10, [20, 20], 391, 392, 591]
 }
 
+//cleaner et modern solution : 
+function cleantheRoom (array) {
+  const sortArray = [...new Set (array)].sort((a,b) => a - b);
+    return sortArray.map(number =>{let filterArray = array.filter(value => value === number);
+    return filterArray.length > 1 ? filterArray : filterArray[0]
+    })
+}
+cleantheRoom (arrayNumb) //[[1, 1, 1, 1], [2, 2, 2], 4, 5, 10, [20, 20], 391, 392, 591]
+
+
 //Bonus: Make it so it organizes strings differently from number types. i.e. [1, "2", "3", 2] should return [[1,2], ["2", "3"]]
 
 const arrayBonus = [1, "2", "3", 2]
@@ -36,6 +46,6 @@ const cleanroombyType = (array) => {
         typeof value === 'number' ? arrayNumb.push(value) : arrayStr.push(value);
     })
   finalArray.push(arrayNumb, arrayStr);
-  console.log(`Grouping same type together`)
-  console.log(finalArray)                       // Grouping same type together  [[1, 2], ['2', '3']]
-}
+  console.log(`Grouping same type together`,finalArray) // Grouping same type together  [[1, 2], ['2', '3']]
+}                      
+cleanroombyType (arrayBonus);
